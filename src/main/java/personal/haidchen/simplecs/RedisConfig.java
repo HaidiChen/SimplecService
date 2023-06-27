@@ -1,4 +1,4 @@
-package personal.haidchen.simplecs.config;
+package personal.haidchen.simplecs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 
 @Configuration
 @EnableRedisRepositories
-public class AppConfig {
+public class RedisConfig {
 
     private static final int REDIS_DB_INDEX_BLABLA = 1;
 
@@ -23,11 +23,10 @@ public class AppConfig {
     }
 
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(
-            RedisConnectionFactory redisConnectionFactory) {
+    public RedisTemplate<String, Object> redisTemplate() {
 
         RedisTemplate<String, Object> template = new RedisTemplate<>();
-        template.setConnectionFactory(redisConnectionFactory);
+        template.setConnectionFactory(redisConnectionFactory());
 
         return template;
     }
