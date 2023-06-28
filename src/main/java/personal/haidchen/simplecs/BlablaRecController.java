@@ -23,10 +23,16 @@ public class BlablaRecController {
     }
 
     @PostMapping("/blablas")
-    public void saveBlablas(@RequestBody BlablaRec blablas) {
-        System.out.println("Blabla Id : " + blablas.id());
-        blablaRepo.save(blablas);
-        kafka.send(blablas.lines());
+    public boolean saveBlablas(@RequestBody BlablaRec blablas) {
+        try {
+            System.out.println("Blabla Id : " + blablas.id());
+            blablaRepo.save(blablas);
+            kafka.send(blablas.lines());
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @GetMapping("/blablas/{id}")
