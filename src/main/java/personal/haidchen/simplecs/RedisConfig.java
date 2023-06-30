@@ -15,7 +15,7 @@ public class RedisConfig {
     private static final int REDIS_DB_INDEX_BLABLA = 1;
 
     @Bean
-    public RedisConnectionFactory redisConnectionFactory() {
+    public LettuceConnectionFactory redisConnectionFactory() {
         LettuceConnectionFactory connectionFactory = new LettuceConnectionFactory();
         connectionFactory.setDatabase(REDIS_DB_INDEX_BLABLA);
 
